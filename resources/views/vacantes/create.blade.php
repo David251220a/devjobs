@@ -10,6 +10,7 @@
     integrity="sha512-qkeymXyips4Xo5rbFhX+IDuWMDEmSn7Qo7KpPMmZ1BmuIA95IPVYsVZNn8n4NH/N30EY7PUZS3gTeTPoAGo1mA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+
 @endsection
 
 @section('navegacion')
@@ -201,9 +202,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js"
     integrity="sha512-5D/0tAVbq1D3ZAzbxOnvpLt7Jl/n8m/YGASscHTNYsBvTcJnrYNiDIJm6We0RPJCpFJWowOPNz9ZJx7Ei+yFiA==" crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/dropzone-min.js"
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/dropzone-min.js"
     integrity="sha512-FFyHlfr2vLvm0wwfHTNluDFFhHaorucvwbpr0sZYmxciUj3NoW1lYpveAQcx2B+MnbXbSrRasqp43ldP9BKJcg==" crossorigin="anonymous"
+    referrerpolicy="no-referrer"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/dropzone-min.min.js"
+    integrity="sha512-ALYIaHxbPRTWdNH4oNgOY8QUEVxukOdn2e/Z4dXcGGnY0mHGg4556b6sWH7KMEDzEMG9V9tvXZoYk21s7FMz2A==" crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
+
 
     <script>
 
@@ -229,10 +234,10 @@
             })
             //agregar al mediun editaor si falla la validacion
             editor.setContent(document.querySelector('#descripcion').value);
-
+            //url: "/vacantes/imagen",
             //DROPZONE
             const dropzone = new Dropzone('#dropzoneDevJobs', {
-                url: "/vacantes/imagen",
+                url: "{{route('vacantes.imagen')}}",
                 dictDefaultMessage: 'Sube aqui tu archivo',
                 acceptedFiles: ".png,.jpg,.jpeg,.gif,.bmp",
                 addRemoveLinks: true,

@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/', 'HomeController@inicio');
+
 //rutas protegidas
 Route::group(['middleware' =>['auth', 'verified']], function(){
     Route::get('/notificaciones', 'NotificacionesController')->name('notificaciones');
