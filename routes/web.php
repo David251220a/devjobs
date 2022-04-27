@@ -13,12 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'InicioController')->name('inicio');
 
 // Route::get('/', 'HomeController@inicio');
-
+Route::post('/busqueda/buscar', 'VacanteController@buscar')->name('vacantes.buscar');
+Route::get('/busqueda/buscar', 'VacanteController@resultados')->name('vacantes.resultado');
 //rutas protegidas
 Route::group(['middleware' =>['auth', 'verified']], function(){
     Route::get('/notificaciones', 'NotificacionesController')->name('notificaciones');
@@ -27,14 +26,16 @@ Route::group(['middleware' =>['auth', 'verified']], function(){
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home');
-
 Route::resource('/vacantes', 'VacanteController')->names('vacantes');
 Route::post('/candidatos/store', 'CandidatoController@store')->name('candidatos.store');
 Route::get('/candidatos/{id}', 'CandidatoController@index')->name('candidatos.index');
+Route::get('/categorias/{categoria}', 'CategoriaController@show')->name('categoria.show');
 
-//subir imagen
 
 Route::post('/vacantes/imagen', 'VacanteController@imagen')->name('vacantes.imagen');
 Route::post('/vacantes/borrarimagen', 'VacanteController@borrarimagen')->name('vacantes.borrarimagen');
+
+
+
+//subir imagen
 

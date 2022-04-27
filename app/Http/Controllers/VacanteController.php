@@ -94,7 +94,14 @@ class VacanteController extends Controller
      */
     public function edit(Vacante $vacante)
     {
-        //
+
+        $this->authorize('view', $vacante);
+
+        $categorias = Categoria::all();
+        $experiencias = Experiencia::all();
+        $ubicaciones = Ubicacion::all();
+        $salarios = Salario::all();
+        return view('vacantes.edit', compact('vacante', 'categorias', 'experiencias', 'ubicaciones', 'salarios'));
     }
 
     /**
@@ -106,7 +113,33 @@ class VacanteController extends Controller
      */
     public function update(Request $request, Vacante $vacante)
     {
-        //
+
+        $this->authorize('update', $vacante);
+
+        $data = $request->validate([
+            "titulo" => 'required|min:8',
+            "categoria" => 'required',
+            "experiencia" => 'required',
+            "ubicacion" => 'required',
+            "salario" => 'required',
+            "descripcion" => 'required|min:50',
+            "imagen" => 'required',
+            "skills" => 'required'
+        ]);
+
+        $vacante->update([
+            'titulo' => $data['titulo'],
+            'imagen' => $data['imagen'],
+            'skills' => $data['skills'],
+            'descripcion' => $data['descripcion'],
+            'categoria_id' => $data['categoria'],
+            'experiencia_id' => $data['experiencia'],
+            'ubicacion_id' => $data['ubicacion'],
+            'salario_id' => $data['salario']
+        ]);
+
+        return redirect()->route('vacantes.index');
+
     }
 
     /**
@@ -117,6 +150,8 @@ class VacanteController extends Controller
      */
     public function destroy(Vacante $vacante)
     {
+        $this->authorize('delete', $vacante);
+
         $vacante->delete();
 
         return response()->json(['mensaje' => 'Se elimino la vacante '. $vacante->titulo]);
@@ -154,6 +189,37 @@ class VacanteController extends Controller
         $vacante->save();
 
         return response()->json(['respuesta' => 'Correcto']);
+    }
+
+    public function buscar(Request $request){
+
+        //dd($request->all());
+
+        $data = $request->validate([
+            'categoria' => 'required',
+            'ubicacion' => 'required',
+        ]);
+
+        $categoria = $data['categoria'];
+        $ubicacion  = $data['ubicacion'];
+
+        $vacantes = Vacante::latest()
+        ->where('categoria_id', $categoria)
+        ->orWhere('ubicacion_id', $ubicacion)
+        ->get();
+        // $vacantes = Vacante::where([
+        //     'categoria_id' => $categoria,
+        //     'ubicacion_id' => $ubicacion
+        // ])
+        // ->latest()
+        // ->get();
+
+        return view('buscar.index', compact('vacantes'));
+
+    }
+
+    public function resultado(){
+
     }
 
 }
