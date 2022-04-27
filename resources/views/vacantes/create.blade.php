@@ -2,12 +2,12 @@
 
 @section('styles')
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css" 
-    integrity="sha512-zYqhQjtcNMt8/h4RJallhYRev/et7+k/HDyry20li5fWSJYSExP9O07Ung28MUuXDneIFg0f2/U3HJZWsTNAiw==" 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/css/medium-editor.min.css"
+    integrity="sha512-zYqhQjtcNMt8/h4RJallhYRev/et7+k/HDyry20li5fWSJYSExP9O07Ung28MUuXDneIFg0f2/U3HJZWsTNAiw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/dropzone.min.css" 
-    integrity="sha512-qkeymXyips4Xo5rbFhX+IDuWMDEmSn7Qo7KpPMmZ1BmuIA95IPVYsVZNn8n4NH/N30EY7PUZS3gTeTPoAGo1mA==" 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/dropzone.min.css"
+    integrity="sha512-qkeymXyips4Xo5rbFhX+IDuWMDEmSn7Qo7KpPMmZ1BmuIA95IPVYsVZNn8n4NH/N30EY7PUZS3gTeTPoAGo1mA=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 @endsection
@@ -24,15 +24,15 @@
     <h1 class="text-2xl text-center mt-10">Nueva Vacante</h1>
 
     <form class="max-w-lg mx-auto my-10" action="{{ route('vacantes.store') }}" method="POST">
-        
+
         @csrf
 
         <div class="mb-5">
 
             <label class="block text-gray-700 text-sm mb-2">Titulo Vacante:</label>
-            <input id="titulo" type="titulo" class="p-3 bg-gray-100 rounded form-input w-full 
+            <input id="titulo" type="titulo" class="p-3 bg-gray-100 rounded form-input w-full
             @error('titulo') border-red-500 border @enderror" name="titulo" value="{{ old('titulo') }}" autofocus>
-            @error('titulo')            
+            @error('titulo')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong  class="font-bold">Error!</strong>
                     <span class="block">{{ $message }}</span>
@@ -50,13 +50,13 @@
 
                 <option disabled selected value="">--Selecciona--</option>
                 @foreach ($categorias as $categoria)
-                    <option 
+                    <option
                     {{ old('categoria') == $categoria->id ? 'selected' : ''}}
                     value="{{ $categoria->id }}">{{ $categoria->nombre}}</option>
                 @endforeach
-                
+
             </select>
-            @error('categoria')            
+            @error('categoria')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong  class="font-bold">Error!</strong>
                     <span class="block">{{ $message }}</span>
@@ -74,14 +74,14 @@
 
                 <option disabled selected value="">--Selecciona--</option>
                 @foreach ($experiencias as $experiencia)
-                    <option 
+                    <option
                     {{ old('experiencia') == $experiencia->id ? 'selected' : ''}}
                     value="{{ $experiencia->id }}">{{ $experiencia->nombre}}</option>
-                @endforeach                
-                
+                @endforeach
+
             </select>
 
-            @error('experiencia')            
+            @error('experiencia')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong  class="font-bold">Error!</strong>
                     <span class="block">{{ $message }}</span>
@@ -99,13 +99,13 @@
 
                 <option disabled selected value="">--Selecciona--</option>
                 @foreach ($ubicaciones as $ubicacion)
-                    <option 
+                    <option
                     {{ old('ubicacion') == $ubicacion->id ? 'selected' : ''}}
                     value="{{ $ubicacion->id }}">{{ $ubicacion->nombre}}</option>
                 @endforeach
-                
+
             </select>
-            @error('ubicacion')            
+            @error('ubicacion')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong  class="font-bold">Error!</strong>
                     <span class="block">{{ $message }}</span>
@@ -123,13 +123,13 @@
 
                 <option disabled selected value="">--Selecciona--</option>
                 @foreach ($salarios as $salario)
-                    <option 
+                    <option
                     {{ old('salario') == $salario->id ? 'selected' : ''}}
                     value="{{ $salario->id }}">{{ $salario->nombre}}</option>
                 @endforeach
-                
+
             </select>
-            @error('salario')            
+            @error('salario')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong  class="font-bold">Error!</strong>
                     <span class="block">{{ $message }}</span>
@@ -143,7 +143,7 @@
             <label class="block text-gray-700 text-sm mb-2">Descripcion del Puesto</label>
             <div class="editable p-3 bg-gray-100 rounded form-input w-full text-gray-700"></div>
             <input type="hidden" name="descripcion" id="descripcion" value="{{ old('descripcion') }}">
-            @error('descripcion')            
+            @error('descripcion')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong  class="font-bold">Error!</strong>
                     <span class="block">{{ $message }}</span>
@@ -156,9 +156,9 @@
 
             <label class="block text-gray-700 text-sm mb-2">Imagen del Puesto</label>
             <div id="dropzoneDevJobs" class="dropzone rounded bg-gray-100"></div>
-            <input type="hidden" name="imagen" id="imagen" value="{{ old('imagen') }}"> 
+            <input type="hidden" name="imagen" id="imagen" value="{{ old('imagen') }}">
             <p id="error"></p>
-            @error('imagen')            
+            @error('imagen')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong  class="font-bold">Error!</strong>
                     <span class="block">{{ $message }}</span>
@@ -172,12 +172,12 @@
 
         <div class="mb-5">
 
-            <label class="block text-gray-700 text-sm mb-5">Habilidades y conocimientos: <span class="text-xs">(Elige al menos 3)</span></label>            
+            <label class="block text-gray-700 text-sm mb-5">Habilidades y conocimientos: <span class="text-xs">(Elige al menos 3)</span></label>
             <lista-skills
             :skills="{{ json_encode($skills) }}"
             :oldskills="{{json_encode( old('skills')) }}">
             </lista-skills>
-            @error('skills')            
+            @error('skills')
                 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-3 mb-6" role="alert">
                     <strong  class="font-bold">Error!</strong>
                     <span class="block">{{ $message }}</span>
@@ -193,16 +193,16 @@
 
 
     </form>
-    
+
 @endsection
 
 @section('scripts')
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js" 
-    integrity="sha512-5D/0tAVbq1D3ZAzbxOnvpLt7Jl/n8m/YGASscHTNYsBvTcJnrYNiDIJm6We0RPJCpFJWowOPNz9ZJx7Ei+yFiA==" crossorigin="anonymous" 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-editor/5.23.3/js/medium-editor.min.js"
+    integrity="sha512-5D/0tAVbq1D3ZAzbxOnvpLt7Jl/n8m/YGASscHTNYsBvTcJnrYNiDIJm6We0RPJCpFJWowOPNz9ZJx7Ei+yFiA==" crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/dropzone-min.js" 
-    integrity="sha512-FFyHlfr2vLvm0wwfHTNluDFFhHaorucvwbpr0sZYmxciUj3NoW1lYpveAQcx2B+MnbXbSrRasqp43ldP9BKJcg==" crossorigin="anonymous" 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/6.0.0-beta.2/dropzone-min.js"
+    integrity="sha512-FFyHlfr2vLvm0wwfHTNluDFFhHaorucvwbpr0sZYmxciUj3NoW1lYpveAQcx2B+MnbXbSrRasqp43ldP9BKJcg==" crossorigin="anonymous"
     referrerpolicy="no-referrer"></script>
 
     <script>
@@ -221,13 +221,13 @@
                 placeholder:{
                     text: 'Información de la vacante'
                 }
-            });            
+            });
 
             editor.subscribe('editableInput', function(eventObj, editable){
                 const contenido  = editor.getContent();
                 document.querySelector('#descripcion').value = contenido;
             })
-            //agregar al mediun editaor si falla la validacion 
+            //agregar al mediun editaor si falla la validacion
             editor.setContent(document.querySelector('#descripcion').value);
 
             //DROPZONE
@@ -255,7 +255,7 @@
                 success: function(file, response){
                     console.log(response.correcto);
                     document.querySelector('#error').textContent = '';
-                    //coloca respuesta del servidor en el input 
+                    //coloca respuesta del servidor en el input
                     document.querySelector('#imagen').value = response.correcto;
                     //añadir al objeto el nombre del servirdor
                     file.nombreservidor = response.correcto;
