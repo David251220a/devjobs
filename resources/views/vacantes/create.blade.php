@@ -238,6 +238,7 @@
             //DROPZONE
             const dropzone = new Dropzone('#dropzoneDevJobs', {
                 url: "{{route('vacantes.imagen')}}",
+                // url: "/vacantes/imagen",
                 dictDefaultMessage: 'Sube aqui tu archivo',
                 acceptedFiles: ".png,.jpg,.jpeg,.gif,.bmp",
                 addRemoveLinks: true,
